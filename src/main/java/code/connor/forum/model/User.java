@@ -1,81 +1,36 @@
 package code.connor.forum.model;
 
+import lombok.Data;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+
 /**
  * @Description 用户实体
  * @Author Connor Xiong
  * @Date 2020-05-13 22:08
  */
+@Data
 public class User extends BasePo {
 
     private static final long serialVersionUID = -4036985780376631274L;
 
+    @NotNull
     private String username;
+
 
     private String nickname;
 
+    @NotNull
     private String password;
 
     private String avatarUrl;
 
+    @Email
     private String email;
 
     private String introduction;
 
     private String signature;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
-    }
-
-    public String getSignature() {
-        return signature;
-    }
-
-    public void setSignature(String signature) {
-        this.signature = signature;
-    }
 }
