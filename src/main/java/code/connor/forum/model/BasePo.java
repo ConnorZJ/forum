@@ -1,7 +1,5 @@
 package code.connor.forum.model;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,7 +8,6 @@ import java.util.Date;
  * @Author Connor Xiong
  * @Date 2020-05-13 22:04
  */
-@Data
 public abstract class BasePo implements Serializable {
 
     private static final long serialVersionUID = 2149368743585017186L;
@@ -39,4 +36,43 @@ public abstract class BasePo implements Serializable {
      */
     private Date updateTime;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getUpdater() {
+        return updater;
+    }
+
+    public void setUpdater(String updater) {
+        this.updater = updater;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }
