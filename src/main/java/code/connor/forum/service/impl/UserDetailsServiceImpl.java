@@ -16,13 +16,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    //    @Autowired
-    private UserDao userDao;
-
     @Autowired
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
+    private UserDao userDao;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -1,6 +1,9 @@
 package code.connor.forum.config;
 
+import code.connor.forum.model.RespResult;
+import code.connor.forum.model.User;
 import code.connor.forum.service.impl.UserDetailsServiceImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @Description Security配置
@@ -55,13 +59,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(new AuthenticationSuccessHandler() {
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-
+                        httpServletResponse.setContentType("application/json;charset=utf-8");
+                        PrintWriter writer = httpServletResponse.getWriter();
+                        User user = (User) authentication.getPrincipal();
+                        RespResult respResult = RespResult.success(user, "登录成功！");
+                        String result = new ObjectMapper().writeValueAsString(respResult);
+                        writer.write(result);
+                        writer.flush();
+                        writer.close();
                     }
                 })
                 .failureHandler(new AuthenticationFailureHandler() {
                     @Override
                     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-
+                        httpServletResponse.setContentType("application/json;charset=utf-8");
+                        PrintWriter writer = httpServletResponse.getWriter();
+                        RespResult respResult = RespResult.fail("登录失败！" + e.getMessage());
+                        String result = new ObjectMapper().writeValueAsString(respResult);
+                        writer.write(result);
+                        writer.flush();
+                        writer.close();
                     }
                 })
                 .permitAll()
