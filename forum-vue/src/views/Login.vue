@@ -15,6 +15,7 @@
 <script>
 import { post } from '../utils/api'
 import axios from 'axios'
+import { Message } from 'element-ui'
 export default {
   name: 'Login',
   data() {
@@ -35,7 +36,14 @@ export default {
     onLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          post('/doLogin', this.loginForm).then(res => {})
+          post('/doLogin', this.loginForm).then(res => {
+            if (res.code == 0) {
+              sessionStorage.setItem('user', JSON.stringify(res.data))
+              this.$router.replace('/home')
+            } else {
+              this.$message.error('用户名或密码错误，请重试！')
+            }
+          })
         } else {
           this.$message.error('请输入用户名或密码')
           return false

@@ -1,5 +1,6 @@
 package code.connor.forum.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +27,7 @@ public class User extends BasePo implements UserDetails {
     private String nickname;
 
     @NotNull
+    @JsonIgnore
     private String password;
 
     private String avatarUrl;

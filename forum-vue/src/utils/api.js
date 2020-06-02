@@ -3,9 +3,15 @@ import {
   Message
 } from 'element-ui'
 
+axios.interceptors.request.use(config => { // request拦截器
+  return config
+}, err => {
+  return Promise.reject(err);
+})
+
 axios.interceptors.response.use(success => {
-  if (success.code == '0') {
-    return success;
+  if (success.status == 200) {
+    return success.data;
   }
 }, error => {
   if (error.response.status == 504 || error.response.status == 404) {
