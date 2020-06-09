@@ -59,3 +59,14 @@ export const post = (url, params) => {
     }
   });
 }
+
+export const postJson = (url,params) =>{
+  return axios({
+    method: 'post',
+    data: params,
+    url: `${base}${url}`,
+    headers: {
+      "Context-Type": "application/json"
+    }
+  });
+}

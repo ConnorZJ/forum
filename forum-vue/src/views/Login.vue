@@ -3,12 +3,13 @@
     <el-form :model="loginForm" ref="loginForm" :rules="rules">
       <h3>请登录!</h3>
       <el-form-item label="用户名" prop="username">
-        <el-input type="text" v-model="loginForm.username" auto-complete="false"></el-input>
+        <el-input type="text" v-model="loginForm.username" autocomplete="false"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="loginForm.password" auto-complete="false"></el-input>
+        <el-input type="password" v-model="loginForm.password" autocomplete="new-password"></el-input>
       </el-form-item>
       <el-button type="primary" @click="onLogin">登录</el-button>
+      <el-button type="primary" @click="onRegister">注册新账号</el-button>
     </el-form>
   </div>
 </template>
@@ -49,7 +50,12 @@ export default {
           return false
         }
       })
+    },
+
+    onRegister() {
+      this.$router.replace("/register");
     }
+
   }
 }
 </script>
