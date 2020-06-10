@@ -40,7 +40,7 @@ export default {
           post('/doLogin', this.loginForm).then(res => {
             if (res.code == 0) {
               sessionStorage.setItem('user', JSON.stringify(res.data))
-              this.$router.replace('/home')
+              this.$router.replace('/')
             } else {
               this.$message.error('用户名或密码错误，请重试！')
             }
