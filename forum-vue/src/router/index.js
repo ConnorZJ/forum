@@ -14,7 +14,8 @@ export default new Router({
   }, {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    children:[]
   }, {
     path: '/register',
     name: 'Register',
